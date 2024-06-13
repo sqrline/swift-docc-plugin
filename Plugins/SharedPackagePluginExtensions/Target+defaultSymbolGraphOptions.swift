@@ -12,17 +12,7 @@ extension SwiftSourceModuleTarget {
     /// Returns the default options that should be used for generating a symbol graph for the
     /// current target in the given package.
     func defaultSymbolGraphOptions(in package: Package) -> PackageManager.SymbolGraphOptions {
-        let targetMinimumAccessLevel: PackageManager.SymbolGraphOptions.AccessLevel
-        
-        if kind == .executable {
-            // The target represents an executable so we'll use an 'internal' minimum
-            // access level.
-            targetMinimumAccessLevel = .internal
-        } else {
-            // Since the target isn't an executable, we assume it's a library and use
-            // the 'public' minimum access level.
-            targetMinimumAccessLevel = .public
-        }
+        let targetMinimumAccessLevel: PackageManager.SymbolGraphOptions.AccessLevel = .public
         
 #if swift(>=5.9)
         let emitExtensionBlockSymbolDefault = true
